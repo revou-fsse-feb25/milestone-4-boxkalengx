@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { UsersRepository } from "./users.repository";
-import { User } from "./entities/user.entity";
-import { UsersServiceItf } from "./users.service.interface";
+import { Injectable } from '@nestjs/common';
+import { UsersRepository } from './users.repository';
+import { User } from './entities/user.entity';
+import { UsersServiceItf } from './users.service.interface';
 
 @Injectable()
 export class UsersService implements UsersServiceItf {
