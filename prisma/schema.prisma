@@ -13,6 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 enum Role {
   USER
   ADMIN
@@ -22,6 +23,13 @@ enum TransactionType {
   DEPOSIT
   WITHDRAW
   TRANSFER
+  PAYMENT
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
 }
 
 model User {

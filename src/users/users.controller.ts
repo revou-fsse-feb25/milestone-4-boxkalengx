@@ -1,28 +1,31 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body,  BadRequestException, InternalServerErrorException, UseGuards, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { User } from './entities/user.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { JwtAuthGuard } from 'src/common/guard/jwt-auth.guard';
+
+@UseGuards(JwtAuthGuard)
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
-  getUsers(): User[] {
-    return this.usersService.listUsers();
+  
+  @Get('profile')
+  async getProfile(@CurrentUser() user: any) {
+    try {
+      console.log(user);
+      return await this.usersService.getUserById(user.id);
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to get user profile');
+    }
   }
-  @Post()
-  createUser(
-    @Body('username') username: string,
-    @Body('email') email: string,
-  ): User {
-    return this.usersService.createUser(username, email);
+  @Patch('profile')
+  async updateProfile(@CurrentUser() user: any, @Body() updateUserDto: UpdateUserDto) {
+    try {
+      return await this.usersService.updateUser(user.id, updateUserDto);
+    } catch (error) {
+      throw new InternalServerErrorException('Failed to update user profile');
+    }
   }
 }
