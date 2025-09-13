@@ -2,7 +2,6 @@ import {
   Body,
   Controller,
   Post,
-  Request,
   UseGuards,
   BadRequestException,
   ConflictException,
@@ -10,9 +9,9 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { User } from '@prisma/client';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
+import { LocalAuthGuard } from 'src/common/guard/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -30,7 +29,7 @@ export class AuthController {
     }
   }
 
-  // @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Body() dto: LoginDto) {
     try {

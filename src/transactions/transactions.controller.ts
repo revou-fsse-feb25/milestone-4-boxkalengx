@@ -14,10 +14,10 @@ import { TransactionsService } from './transactions.service';
 import { DepositDto } from './dto/deposit.dto';
 import { WithdrawDto } from './dto/withdraw.dto';
 import { TransferDto } from './dto/transfer.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { User } from '@prisma/client';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import type { User } from '@prisma/client';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { JwtAuthGuard } from 'src/common/guard/jwt-auth.guard';
+import { RolesGuard } from 'src/common/guard/roles.guard';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('transactions')

@@ -30,7 +30,7 @@ export class TransactionsService  {
       data: {
         senderId,
         accountId: dto.accountId,
-        type: TransactionType.deposit,
+        type: TransactionType.DEPOSIT,
         amount: dto.amount,
       },
     });
@@ -57,7 +57,7 @@ export class TransactionsService  {
       data: {
         senderId,
         accountId: dto.accountId,
-        type: TransactionType.withdrawal,
+        type: TransactionType.WITHDRAW,
         amount: dto.amount,
       },
     });
@@ -91,7 +91,7 @@ export class TransactionsService  {
     if (!receiver) throw new NotFoundException('Receiver not found');
 
     const receiverAccount = await this.prisma.account.findFirst({
-      where: { userId: receiverId, status: 'active' },
+      where: { userId: receiverId },
     });
     if (!receiverAccount)
       throw new NotFoundException('Receiver account not found');
@@ -112,7 +112,7 @@ export class TransactionsService  {
           accountId: senderAccount.id,
           senderId,
           receiverId,
-          type: TransactionType.transfer,
+          type: TransactionType.TRANSFER,
           amount,    
           description,
         },
@@ -142,4 +142,4 @@ export class TransactionsService  {
 
     return trx;
   }
-}
+} 

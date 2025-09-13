@@ -7,7 +7,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
-import { User } from '@prisma/client';
+import { User, Role } from '@prisma/client';
 import { RegisterDto } from './dto/register.dto';
 
 
@@ -61,8 +61,8 @@ export class AuthService {
 
       const newUser = await this.usersService.createUser({
         name,
-        role: 'USER',
         email,
+        role: Role.USER, 
         password: hashedPassword, 
       });
 

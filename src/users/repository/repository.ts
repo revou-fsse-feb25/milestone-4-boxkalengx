@@ -58,7 +58,7 @@ async getAllUsers(): Promise<User[]> {
     try {
       const updatedUser = await this.prisma.user.update({
         where: { id },
-        data,
+       data,
       });
 
       return updatedUser;
