@@ -50,5 +50,4 @@ User Login
 Get All Users
 
 ## Creator
-Build with &#x2661; by Ryan, 2025
-## Instalasi
+Build with  by Ryan, 2025
