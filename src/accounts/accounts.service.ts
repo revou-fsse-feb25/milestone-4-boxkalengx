@@ -8,7 +8,7 @@ import {
 import { Account, User } from '@prisma/client';
 import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
-import { AccountsRepository } from './repository.ts/repository';
+import { AccountsRepository } from './repository/repository';
 
 @Injectable()
 export class AccountsService  {

@@ -26,11 +26,6 @@ enum TransactionType {
   PAYMENT
 }
 
-enum TransactionStatus {
-  PENDING
-  SUCCESS
-  FAILED
-}
 
 model User {
   id        Int    @id @default(autoincrement())
@@ -60,7 +55,7 @@ model Transaction {
   id            Int           @id @default(autoincrement())
   type          TransactionType
   amount        Float
-  description   String?
+  description   String? 
   accountId     Int
   account       Account          @relation(fields: [accountId], references: [id])
 

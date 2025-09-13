@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Account } from '@prisma/client';
+import { Account, PrismaClient } from '@prisma/client';
 import { CreateAccountDto } from '../dto/create-account.dto';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { UpdateAccountDto } from '../dto/update-account.dto';  
-
 
 @Injectable()
 export class AccountsRepository {
@@ -13,12 +12,12 @@ export class AccountsRepository {
   
  async createAccount(data: CreateAccountDto & { userId: number }): Promise<Account> {
     try {
-      return await this.prisma.account.create({
+      return await this.prisma.account.create({ 
         data: {
           balance: data.balance,
           name: data.name,
           userId: data.userId,
-        },
+        }, 
       });
     } catch (error) {
       if (error.code === 'P2002') {
