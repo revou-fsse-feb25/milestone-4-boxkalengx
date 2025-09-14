@@ -37,7 +37,7 @@ This is an overview of RevoBank backend. The features, tech stacks, and demo of 
 
 ## Deployed Website :
 
->git clone milestone-4-boxkalengx-production.up.railway.appb
+> milestone-4-boxkalengx-production.up.railway.app
 
 ## Previews
 
@@ -50,4 +50,4 @@ User Login
 Get All Users
 
 ## Creator
-Build with  by Ryan, 2025
+craft by Ryan, 2025
